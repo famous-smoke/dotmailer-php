@@ -46,7 +46,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getClient($adapter);
 
         $this->assertEquals([self::USERNAME, self::PASSWORD], $client->getConfig('auth'));
-        $this->assertEquals(Dotmailer::DEFAULT_URI, $client->getConfig('base_uri'));
+        $this->assertEquals(\Dotmailer\Config\Settings::DEFAULT_URI, $client->getConfig('base_uri'));
         $this->assertArraySubset(
             [
                 'Accept' => 'application/json',

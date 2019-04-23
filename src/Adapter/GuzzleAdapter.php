@@ -2,9 +2,10 @@
 
 namespace Dotmailer\Adapter;
 
-use Dotmailer\Dotmailer;
+use Dotmailer\Config\Settings;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use http\Exception\BadUrlException;
 use Psr\Http\Message\ResponseInterface;
 
 class GuzzleAdapter implements Adapter
@@ -29,13 +30,18 @@ class GuzzleAdapter implements Adapter
      *
      * @return self
      */
-    public static function fromCredentials(
-        string $username,
-        string $password,
-        string $baseUri = Dotmailer::DEFAULT_URI
-    ): self {
-        $client = new Client(
-            [
+    public static function fromCredentials(string $username, string $password, string $baseUri = null): self
+    {
+        if ($baseUri === null) {
+            if (class_exists('Dotmailer\Config\Settings')) {
+                $baseUri = Settings::DEFAULT_URI;
+            } else {
+                $msg = "A base URI must be supplied in the method call or a settings class with a DEFAULT_URI constant must be available at namespace: Dotmailer\Config\Settings";
+                throw new \UnexpectedValueException($msg, 100);
+            }
+
+        }
+        $client = new Client([
                 'base_uri' => $baseUri,
                 'auth' => [
                     $username,
@@ -44,9 +50,8 @@ class GuzzleAdapter implements Adapter
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                ]
-            ]
-        );
+                ],
+            ]);
 
         return new self($client);
     }

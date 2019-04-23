@@ -1,12 +1,12 @@
 {
-    "name": "wellcometrust/dotmailer-php",
+    "name": "famous-smoke/dotmailer-php",
     "description": "PHP Client library for the Dotmailer REST (v2) API",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Adam Neale",
-            "email": "adam@adam-neale.co.uk"
+            "name": "Bruce Martin",
+            "email": "bmartin@famous-smoke.com"
         }
     ],
     "require": {
@@ -20,7 +20,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Dotmailer\\": "src/"
+            "Dotmailer\\": "src/",
+            "Dotmailer\\Config\\": "src/Config"
         }
     },
     "autoload-dev": {
