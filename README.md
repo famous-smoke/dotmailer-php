@@ -4,8 +4,27 @@ PHP client library for the Dotmailer REST API (v2) described at https://develope
 
 Installation
 ---
-`composer require wellcometrust/dotmailer-php`
 
+`composer config repositories.repo-name vcs https://github.com/famous-smoke/dotmailer-php`
+`composer require famous-smoke/dotmailer-php:dev-master`
+
+NOTE: I added a config namespace and the code expects to find in there a class named Settings.
+This class should contain at minimum the constant DEFAULT_URI set to your dotmailer endpoint.
+
+
+The class can be copied from below:
+
+```
+<?php
+namespace Dotmailer\Config;
+
+
+class Settings
+{
+    const DEFAULT_URI = 'https://api.dotmailer.com'; //replace with your endpoint base URI from dotdigital.
+
+}
+```
 Usage
 ---
 ```
