@@ -6,7 +6,7 @@ Installation
 ---
 
 `composer config repositories.repo-name vcs https://github.com/famous-smoke/dotmailer-php`
-`composer require famous-smoke/dotmailer-php:dev-master`
+`composer require famous-smoke/dotmailer-php:v1.2.3`
 
 NOTE: I added a config namespace and the code expects to find in there a class named Settings.
 This class should contain at minimum the constant DEFAULT_URI set to your dotmailer endpoint.
