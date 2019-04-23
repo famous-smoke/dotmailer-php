@@ -1,7 +1,8 @@
 /build/*
 !/build/.gitkeep
 /vendor
-/src/config.d/*
+/src/Config/*
+!/src/Config/.gitkeep
 /phpunit.xml
 /.idea
 .DS_Store
