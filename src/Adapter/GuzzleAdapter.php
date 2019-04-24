@@ -33,7 +33,7 @@ class GuzzleAdapter implements Adapter
     public static function fromCredentials(string $username, string $password, string $baseUri = null): self
     {
         if ($baseUri === null) {
-            if (class_exists('Dotmailer\Config\Settings')) {
+            if (class_exists('\Dotmailer\Config\Settings')) {
                 $baseUri = Settings::DEFAULT_URI;
             } else {
                 $msg = "A base URI must be supplied in the method call or a settings class with a DEFAULT_URI constant must be available at namespace: Dotmailer\Config\Settings";
