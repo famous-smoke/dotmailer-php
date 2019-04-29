@@ -72,7 +72,12 @@ class Dotmailer
         $url = sprintf('/v2/address-books/%s', $id);
         $this->response = $this->adapter->get($url);
         $addressBooks = json_decode($this->response->getBody()->getContents());
-        return $addressBooks;
+        return new AddressBook(
+            $addressBooks->id,
+            $addressBooks->name,
+            $addressBooks->visibility,
+            $addressBooks->contacts
+        );
     }
 
     public function getAddressBookCampaigns(int $addressBookId, $select = 1000, $skip = 0): array
