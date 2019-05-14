@@ -466,7 +466,7 @@ class Dotmailer
         $this->response = $this->adapter->post('/v2/email/triggered-campaign', [
                 'toAddresses' => $toAddresses,
                 'campaignId' => $campaignId,
-                'personalizationValues' => array_map(function (string $name, string $value) {
+                'personalizationValues' => array_map(function (string $name, $value) {
                     return [
                         'Name' => strtoupper($name),
                         'Value' => $value,
