@@ -346,6 +346,27 @@ class Dotmailer
         );
     }
 
+    public function resubscribeContactNoChallengeToAddressbook(
+        Contact $contact,
+        int $addressbookId,
+        string $preferredLocale = null,
+        string $challengeUrl = null
+    ) : void {
+        $content = [
+            'unsubscribedContact' => [
+                'email' => $contact->getEmail(),
+                'dataFields' => $contact->getDataFields(),
+            ],
+            'preferredLocale' => $preferredLocale,
+            'returnUrlToUseIfChallenged' => $challengeUrl,
+        ];
+        $url = sprintf('/v2/address-books/%s/contacts/resubscribe-with-no-challenge', $addressbookId);
+        $this->response = $this->adapter->post(
+            $url,
+            array_filter($content)
+        );
+    }
+
     /**
      * @param DataField $dataField
      */
