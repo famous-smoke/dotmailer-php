@@ -255,6 +255,28 @@ class Dotmailer
     }
 
     /**
+     * getContactPreferences
+     *
+     * @param \Dotmailer\Entity\Contact $contact
+     *
+     * @return array
+     */
+    public function getContactPreferences(Contact $contact): array
+    {
+        if ($contact->getId() !== null) {
+            $useIdentifier = $contact->getId();
+        } else {
+            $useIdentifier = $contact->getEmail();
+        }
+        $prefs = [];
+        $url = sprintf('/v2/contact/%s/preferences', $useIdentifier);
+        $this->response = $this->adapter->get($url);
+        $this->response->getBody()->rewind();
+        $prefs = json_decode((string) $this->getResponse()->getBody(), true);
+        return $prefs;
+    }
+
+    /**
      * @param \DateTimeInterface $dateTime
      * @param int|null           $select
      * @param int|null           $skip
