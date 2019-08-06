@@ -154,7 +154,7 @@ class Dotmailer
         return CampaignFactory::build(json_decode($this->response->getBody()->getContents()));
     }
 
-    public function getCampaignActivityForContact(Campaign $campaign, Contact $contact): \stdClass
+    public function getCampaignActivityForContact(Campaign $campaign, Contact $contact):? \stdClass
     {
         $url = sprintf("/v2/campaigns/%s/activities/%s", $campaign->getId(), $contact->getId());
         $this->response = $this->adapter->get($url);
